@@ -180,6 +180,8 @@ public interface ProcessDefinitionQuery extends Query<ProcessDefinitionQuery, Pr
    */
   ProcessDefinitionQuery includeProcessDefinitionsWithoutTenantId();
 
+  ProcessDefinitionQuery startableInTasklist();
+
   // ordering ////////////////////////////////////////////////////////////
 
   /** Order by the category of the process definitions (needs to be followed by {@link #asc()} or {@link #desc()}). */

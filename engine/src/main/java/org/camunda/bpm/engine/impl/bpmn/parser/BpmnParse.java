@@ -547,6 +547,17 @@ public class BpmnParse extends Parse {
       addError(new BpmnParseException(e.getMessage(), processElement, e));
     }
 
+    String isStartableInTasklistStr = processElement.attributeNS(CAMUNDA_BPMN_EXTENSIONS_NS, "isStartableInTasklist");
+    boolean isStartableInTasklist = true;
+    if (isStartableInTasklistStr != null) {
+      if (isStartableInTasklistStr.equalsIgnoreCase("false")) {
+        isStartableInTasklist = false;
+      } else if (!isStartableInTasklistStr.equalsIgnoreCase("true")) {
+        LOG.ignoringNonStartableInTasklistProcess(processElement.attribute("id"));
+      }
+    }
+    processDefinition.setStartableInTasklist(isStartableInTasklist);
+
     LOG.parsingElement("process", processDefinition.getKey());
 
     parseScope(processElement, processDefinition);

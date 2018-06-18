@@ -40,6 +40,11 @@ public class BpmnParseLogger extends ProcessEngineLogger {
     logError("004", "Unexpected Exception with message: {} ", cause.getMessage());
   }
 
+  public void ignoringNonStartableInTasklistProcess(String elementId) {
+    logInfo("005", "Ignoring non-startable in Tasklist process with id '{}'. Set the attribute isStartableInTasklist=\"false\" to not show " +
+      "this process in Tasklist.", elementId);
+  }
+
   // EXCEPTIONS
 
   public ProcessEngineException parsingProcessException(Exception cause) {
